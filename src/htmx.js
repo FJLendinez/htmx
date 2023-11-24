@@ -2488,10 +2488,10 @@ return (function () {
                 }
             }
             if (matches(elt, 'form')) {
-                var inputs = elt.elements;
-                forEach(inputs, function(input) {
-                    processInputValue(processed, values, errors, input, validate);
-                });
+                var form = new FormData(elt);
+                for (var [entry_name, entry_value] of form.entries()){
+                    addValueToValues(entry_name, entry_value, values);
+                }
             }
         }
 
